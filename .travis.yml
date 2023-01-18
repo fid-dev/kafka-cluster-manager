@@ -14,9 +14,11 @@ after_success:
   - bash <(curl -Ls https://coverage.codacy.com/get.sh) report
 before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - export DOCKER_TAG=fashionid/kafka-cluster-manager:$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+  - echo "DOCKER_TAG: $DOCKER_TAG"
 deploy:
   - provider: script
     skip_cleanup: true
-    script: mvn dockerfile:build dockerfile:push
+    script: docker build -t $DOCKER_TAG . && docker push $DOCKER_TAG
     on:
       branch: master
