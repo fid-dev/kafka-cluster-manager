@@ -15,7 +15,7 @@ after_success:
 before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - export DOCKER_TAG=fashionid/kafka-cluster-manager:$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-  - echo "DOCKER_TAG: $DOCKER_TAG"
+  - echo "DOCKER_TAG is $DOCKER_TAG"
 deploy:
   - provider: script
     skip_cleanup: true
