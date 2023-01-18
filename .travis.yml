@@ -14,11 +14,13 @@ after_success:
   - bash <(curl -Ls https://coverage.codacy.com/get.sh) report
 before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - export DOCKER_TAG=fashionid/kafka-cluster-manager:$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+  - export KCM_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+  - export KCM_JAR_FILE=kafka-cluster-manager-$KCM_VERSION.jar
+  - export DOCKER_TAG=fashionid/kafka-cluster-manager:$KCM_VERSION
   - echo "DOCKER_TAG is $DOCKER_TAG"
 deploy:
   - provider: script
     skip_cleanup: true
-    script: docker build -t $DOCKER_TAG . && docker push $DOCKER_TAG
+    script: docker build --build-arg JAR_FILE=$KCM_JAR_FILE -t $DOCKER_TAG . && docker push $DOCKER_TAG
     on:
       branch: master
