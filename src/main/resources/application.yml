@@ -25,8 +25,8 @@ logging:
   pattern:
     console: "%clr(${LOG_LEVEL_PATTERN:%5p}) %m%n"
   level:
-    root: info
-    org.apache.kafka: error
+    root: debug
+    org.apache.kafka: warn
     com.ulisesbocchio.jasyptspringboot: warn
 spring:
   output:

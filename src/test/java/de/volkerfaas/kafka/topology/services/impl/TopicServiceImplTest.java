@@ -445,10 +445,10 @@ class TopicServiceImplTest {
             final TopicConfiguration topicConfiguration = new TopicConfiguration(topicName, partitionConfigurations, (short) 3, config);
             final ConsumerGroupConfiguration consumerGroupConfiguration = new ConsumerGroupConfiguration(groupId, ConsumerGroupConfiguration.State.findByValue(state));
             final List<ConsumerConfiguration> consumerConfigurations = List.of(
-                    new ConsumerConfiguration(partitionConfigurations.get(0), 9),
-                    new ConsumerConfiguration(partitionConfigurations.get(1), 6),
-                    new ConsumerConfiguration(partitionConfigurations.get(2), 3),
-                    new ConsumerConfiguration(partitionConfigurations.get(3), 7)
+                    new ConsumerConfiguration(partitionConfigurations.get(0), 9L),
+                    new ConsumerConfiguration(partitionConfigurations.get(1), 6L),
+                    new ConsumerConfiguration(partitionConfigurations.get(2), 3L),
+                    new ConsumerConfiguration(partitionConfigurations.get(3), 7L)
             );
             consumerGroupConfiguration.getConsumers().addAll(consumerConfigurations);
             final ClusterConfiguration clusterConfiguration = new ClusterConfiguration("lkc-p5zy2");
@@ -480,10 +480,10 @@ class TopicServiceImplTest {
             final TopicConfiguration topicConfiguration = new TopicConfiguration(topicName, partitionConfigurations, (short) 3, config);
             final ConsumerGroupConfiguration consumerGroupConfiguration = new ConsumerGroupConfiguration(groupId, ConsumerGroupConfiguration.State.DEAD);
             final List<ConsumerConfiguration> consumerConfigurations = List.of(
-                    new ConsumerConfiguration(partitionConfigurations.get(0), 9),
-                    new ConsumerConfiguration(partitionConfigurations.get(1), 6),
-                    new ConsumerConfiguration(partitionConfigurations.get(2), 3),
-                    new ConsumerConfiguration(partitionConfigurations.get(3), 7)
+                    new ConsumerConfiguration(partitionConfigurations.get(0), 9L),
+                    new ConsumerConfiguration(partitionConfigurations.get(1), 6L),
+                    new ConsumerConfiguration(partitionConfigurations.get(2), 3L),
+                    new ConsumerConfiguration(partitionConfigurations.get(3), 7L)
             );
             consumerGroupConfiguration.getConsumers().addAll(consumerConfigurations);
             final ClusterConfiguration clusterConfiguration = new ClusterConfiguration("lkc-p5zy2");

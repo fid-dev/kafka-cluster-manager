@@ -182,7 +182,16 @@ public class KafkaClusterRepositoryImpl implements KafkaClusterRepository {
     public ConsumerConfiguration getConsumer(Map.Entry<TopicPartition, OffsetAndMetadata> topicPartitionOffsetAndMetadata, Collection<TopicConfiguration> topics) {
         final String topicName = topicPartitionOffsetAndMetadata.getKey().topic();
         final int index = topicPartitionOffsetAndMetadata.getKey().partition();
-        final long offset = topicPartitionOffsetAndMetadata.getValue().offset();
+
+        var metadata = topicPartitionOffsetAndMetadata.getValue();
+
+        final Long offset;
+        if(metadata == null) {
+            offset = null;
+        } else {
+            offset = metadata.offset();
+        }
+
         final PartitionConfiguration partition = topics.stream()
                 .map(TopicConfiguration::getPartitions)
                 .flatMap(List::stream)

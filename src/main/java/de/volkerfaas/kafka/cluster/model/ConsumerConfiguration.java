@@ -3,9 +3,9 @@ package de.volkerfaas.kafka.cluster.model;
 public class ConsumerConfiguration {
 
     private final PartitionConfiguration partition;
-    private final long offset;
+    private final Long offset;
 
-    public ConsumerConfiguration(PartitionConfiguration partition, long offset) {
+    public ConsumerConfiguration(PartitionConfiguration partition, Long offset) {
         this.partition = partition;
         this.offset = offset;
     }
@@ -14,7 +14,7 @@ public class ConsumerConfiguration {
         return partition;
     }
 
-    public long getOffset() {
+    public Long getOffset() {
         return offset;
     }
 
