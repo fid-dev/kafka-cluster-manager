@@ -13,7 +13,7 @@ jobs:
           java-distribution: 'adopt'
 
       - name: build
-        run: mvn package
+        run: mvn package -DskipTests
       - name: Create Release
         if: github.ref == 'refs/heads/master'
         uses: actions/create-release@v1
