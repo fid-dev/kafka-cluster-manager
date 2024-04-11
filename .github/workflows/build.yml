@@ -22,5 +22,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
+          asset_path: target/kafka-cluster-manager-*.jar
           draft: false
           prerelease: false
