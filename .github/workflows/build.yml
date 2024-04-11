@@ -14,3 +14,6 @@ jobs:
 
       - name: build
         run: mvn package
+      - name: create relase
+        if: github.ref == 'refs/heads/master'
+        run: exit 0
