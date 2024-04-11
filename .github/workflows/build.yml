@@ -3,7 +3,7 @@ on:
   push:
 jobs:
   build:
-    runs-on: gke-ap-prd
+    runs-on: ubuntu-latest
     steps:
       - name: Restore cached Maven dependencies
         uses: actions/cache/restore@v4
