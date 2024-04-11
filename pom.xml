@@ -32,7 +32,7 @@
         <java.version>15</java.version>
         <junit.version>5.6.2</junit.version>
         <mockito.version>3.4.0</mockito.version>
-        <confluent.version>6.0.0</confluent.version>
+        <confluent.version>7.5.3</confluent.version>
     </properties>
 
     <repositories>
