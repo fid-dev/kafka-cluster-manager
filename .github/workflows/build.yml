@@ -9,7 +9,7 @@ jobs:
       - name: Setup Java+Maven
         uses: s4u/setup-maven-action@v1.12.0
         with:
-          java-version: '15'
+          java-version: '17'
           distribution: 'adopt'
 
       - name: build
