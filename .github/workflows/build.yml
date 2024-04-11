@@ -20,16 +20,16 @@ jobs:
 
       - name: build
         run: mvn package -DskipTests
-      - name: Create Release
-        if: github.ref == 'refs/heads/master'
-        uses: softprops/action-gh-release@v2
-        with:
-          files: target/kafka-cluster-manager-*.jar
-        
-          
 
       - name: Cache Maven dependencies
         uses: actions/cache@v4
         with:
           path: .m2/repository
           key: maven-dependencies-${{ hashFiles('pom.xml') }}
+
+      - name: Create Release
+        if: github.ref == 'refs/heads/master'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: target/kafka-cluster-manager-*.jar
+          tag_name: master
