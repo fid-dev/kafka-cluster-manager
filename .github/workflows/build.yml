@@ -15,7 +15,7 @@ jobs:
       - name: Restore cached Maven dependencies
         uses: actions/cache/restore@v4
         with:
-          path: .m2/repository
+          path: $HOME/.m2/repository
           key: maven-dependencies-${{ hashFiles('pom.xml') }}
 
       - name: build
@@ -24,7 +24,7 @@ jobs:
       - name: Cache Maven dependencies
         uses: actions/cache/save@v4
         with:
-          path: .m2/repository
+          path: $HOME/.m2/repository
           key: maven-dependencies-${{ hashFiles('pom.xml') }}
 
       - name: Create Release
