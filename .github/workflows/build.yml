@@ -22,7 +22,7 @@ jobs:
         run: mvn package -DskipTests
 
       - name: Cache Maven dependencies
-        uses: actions/cache@v4
+        uses: actions/cache/save@v4
         with:
           path: .m2/repository
           key: maven-dependencies-${{ hashFiles('pom.xml') }}
