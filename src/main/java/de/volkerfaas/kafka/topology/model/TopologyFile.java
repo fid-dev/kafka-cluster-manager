@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.io.File;
 
 @ValidTopologyFile
-public class TopologyFile {
+public class TopologyFile implements Comparable<TopologyFile> {
 
     private File file;
     private Domain domain;
@@ -40,4 +40,11 @@ public class TopologyFile {
                 '}';
     }
 
+    @Override
+    public int compareTo(@org.jetbrains.annotations.NotNull TopologyFile other) {
+        var thisDomainName = this.domain.getName();
+        var otherDomainName = other.getDomain().getName();
+
+        return thisDomainName.compareTo(otherDomainName);
+    }
 }

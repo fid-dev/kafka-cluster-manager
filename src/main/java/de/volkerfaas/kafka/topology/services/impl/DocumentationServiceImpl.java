@@ -17,6 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -57,7 +58,7 @@ public class DocumentationServiceImpl implements DocumentationService {
             final Path path = Path.of(directory, eventsFilename);
             final StringBuilder stringBuilder = new StringBuilder();
             final String eventsDirectory = directory + "/events";
-            topologies.forEach(topology -> buildDomainDocumentation(eventsDirectory, stringBuilder, topology));
+            topologies.stream().sorted().forEach(topology -> buildDomainDocumentation(eventsDirectory, stringBuilder, topology));
             final String content = stringBuilder.toString();
             Files.writeString(path, content, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
             LOGGER.info("Events documentation '{}' has been updated", topologyFilename);
@@ -120,7 +121,8 @@ public class DocumentationServiceImpl implements DocumentationService {
         final Table.Builder tableBuilderDomains = new Table.Builder()
                 .withAlignments(Table.ALIGN_LEFT, Table.ALIGN_LEFT, Table.ALIGN_LEFT, Table.ALIGN_LEFT)
                 .addRow("Domain", "Team", "E-Mail-Address", "Description");
-        topologies.forEach(topology -> {
+
+        topologies.stream().sorted().forEach(topology -> {
             final Domain domain = topology.getDomain();
             final String name = domain.getMaintainer().getName();
             final String email = domain.getMaintainer().getEmail();
@@ -141,7 +143,7 @@ public class DocumentationServiceImpl implements DocumentationService {
         final Table.Builder tableBuilderTopics = new Table.Builder()
                 .withAlignments(Table.ALIGN_LEFT, Table.ALIGN_LEFT, Table.ALIGN_LEFT, Table.ALIGN_LEFT, Table.ALIGN_LEFT)
                 .addRow("Topic", "Maintainer", "Key Schema", "Value Schema", "Description");
-        topologies.forEach(topology -> {
+        topologies.stream().sorted().forEach(topology -> {
             final Domain domain = topology.getDomain();
             final String maintainer = domain.getMaintainer().getTeam();
             domain.getVisibilities()
