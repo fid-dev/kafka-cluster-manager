@@ -78,11 +78,7 @@ public class KafkaClusterManager implements CommandLineRunner {
         } catch (AssertionError e) {
             throw e;
         } catch (Throwable e) {
-            if (LOGGER.isDebugEnabled()) {
-                LOGGER.error("{}", e.getMessage(), e);
-            } else {
-                LOGGER.error("{}", e.getMessage());
-            }
+            LOGGER.error("{}", e);
             System.exit(1);
         }
     }

@@ -153,6 +153,10 @@ public class KafkaClusterRepositoryImpl implements KafkaClusterRepository {
         } else if (dryRun) {
             LOGGER.info("Config items to be updated in cluster");
         } else {
+            for (var config : configs.entrySet()) {
+                LOGGER.info("Updating config with type " + config.getKey().type() + ", name " + config.getKey().name() + "...");
+            }
+
             adminClient.incrementalAlterConfigs(configs).all().get();
             LOGGER.info("Config items updated in cluster");
         }

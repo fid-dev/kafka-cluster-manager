@@ -23,10 +23,11 @@ config:
   resource: ${config.type}:${config.directory}
 logging:
   pattern:
-    console: "%clr(${LOG_LEVEL_PATTERN:%5p}) %m%n"
+    console: "%clr(${LOG_LEVEL_PATTERN:%5p}) - %c{36}: %m%n"
   level:
     root: debug
     org.apache.kafka: warn
+    sun.net: warn
     com.ulisesbocchio.jasyptspringboot: warn
 spring:
   output:
