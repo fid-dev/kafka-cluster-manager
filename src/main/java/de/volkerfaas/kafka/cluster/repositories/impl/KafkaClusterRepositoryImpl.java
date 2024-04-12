@@ -54,6 +54,9 @@ public class KafkaClusterRepositoryImpl implements KafkaClusterRepository {
         } else if (dryRun) {
             LOGGER.info("New ACLs to be created in cluster");
         } else {
+            for (var binding : aclBindings) {
+                LOGGER.info("Creating ACL \"" + binding.pattern().name() + "\" with pattern " + binding.pattern().toString() + "...");
+            }
             adminClient.createAcls(aclBindings).all().get();
             LOGGER.info("New ACLs created in cluster");
         }
@@ -67,6 +70,9 @@ public class KafkaClusterRepositoryImpl implements KafkaClusterRepository {
         } else if (dryRun) {
             LOGGER.info("New partitions to be created in cluster");
         } else {
+            for (var partition : newPartitions.entrySet()) {
+                LOGGER.info("Creating partitions for topic: " + partition.getKey());
+            }
             adminClient.createPartitions(newPartitions).all().get();
             LOGGER.info("New partitions created in cluster");
         }
@@ -80,6 +86,10 @@ public class KafkaClusterRepositoryImpl implements KafkaClusterRepository {
         } else if (dryRun) {
             LOGGER.info("New topics to be created in cluster");
         } else {
+            for (var topic : newTopics) {
+                LOGGER.info("Creating topic " + topic.name() + "...");
+            }
+
             adminClient.createTopics(newTopics).all().get();
             LOGGER.info("New topics created in cluster");
         }
@@ -95,6 +105,10 @@ public class KafkaClusterRepositoryImpl implements KafkaClusterRepository {
             LOGGER.info("ACLs to be removed from cluster");
             printAclBindingFilters(aclBindingFilters);
         } else {
+            for (var filter : aclBindingFilters) {
+                LOGGER.info("Deleting ACLs that match filter: " + filter.toString() + "...");
+            }
+
             aclBindings = adminClient.deleteAcls(aclBindingFilters).all().get();
             LOGGER.info("ACLs removed from cluster");
             printAclBindings(aclBindings);
@@ -110,6 +124,10 @@ public class KafkaClusterRepositoryImpl implements KafkaClusterRepository {
         } else if (dryRun) {
             LOGGER.info("Topics to be removed from cluster");
         } else {
+            for (var topic : topicNames) {
+                LOGGER.info("Deleting topic " + topic + "...");
+            }
+
             adminClient.deleteTopics(topicNames).all().get();
             LOGGER.info("Topics removed from cluster");
         }
