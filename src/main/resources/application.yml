@@ -25,7 +25,7 @@ logging:
   pattern:
     console: "%clr(${LOG_LEVEL_PATTERN:%5p}) - %c{36}: %m%n"
   level:
-    root: debug
+    root: info
     org.apache.kafka: warn
     sun.net: warn
     com.ulisesbocchio.jasyptspringboot: warn
